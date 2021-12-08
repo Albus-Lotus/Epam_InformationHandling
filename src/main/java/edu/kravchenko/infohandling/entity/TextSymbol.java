@@ -1,7 +1,5 @@
-package edu.kravchenko.infohandling.entity.impl;
+package edu.kravchenko.infohandling.entity;
 
-import edu.kravchenko.infohandling.entity.Component;
-import edu.kravchenko.infohandling.entity.ComponentType;
 import edu.kravchenko.infohandling.exception.TextException;
 
 import java.util.EnumSet;
