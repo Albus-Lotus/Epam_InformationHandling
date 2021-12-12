@@ -2,12 +2,12 @@ package edu.kravchenko.infohandling.entity;
 
 import java.util.List;
 
-public interface Component {
-    void add(Component component);
+public interface InfoComponent {
+    void add(InfoComponent infoComponent);
 
-    void remove(Component component);
+    void remove(InfoComponent infoComponent);
 
-    List<Component> getChildren();
+    List<InfoComponent> getChildren();
 
     ComponentType getType();
 }

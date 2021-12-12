@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-public class TextComposite implements Component {
-    private List<Component> components = new ArrayList<>();
+public class TextComposite implements InfoComponent {
+    private List<InfoComponent> infoComponents = new ArrayList<>();
     private ComponentType type;
 
     public TextComposite(ComponentType type) throws TextException {
@@ -19,18 +19,18 @@ public class TextComposite implements Component {
     }
 
     @Override
-    public void add(Component component) {
-        components.add(component);
+    public void add(InfoComponent infoComponent) {
+        infoComponents.add(infoComponent);
     }
 
     @Override
-    public void remove(Component component) {
-        components.remove(component);
+    public void remove(InfoComponent infoComponent) {
+        infoComponents.remove(infoComponent);
     }
 
     @Override
-    public List<Component> getChildren() {
-        return components;
+    public List<InfoComponent> getChildren() {
+        return infoComponents;
     }
 
     @Override
@@ -43,13 +43,13 @@ public class TextComposite implements Component {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TextComposite that = (TextComposite) o;
-        return components.equals(that.components) && type == that.type;
+        return infoComponents.equals(that.infoComponents) && type == that.type;
     }
 
     @Override
     public int hashCode() {
         int result = 1;
-        result = 31 * result + components.hashCode();
+        result = 31 * result + infoComponents.hashCode();
         result = 31 * result + type.hashCode();
         return result;
     }
@@ -58,8 +58,8 @@ public class TextComposite implements Component {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         String delimiter = type.getDelimiter();
-        for (Component component : components) {
-            sb.append(component.toString()).append(delimiter);
+        for (InfoComponent infoComponent : infoComponents) {
+            sb.append(infoComponent.toString()).append(delimiter);
         }
         return sb.toString();
     }

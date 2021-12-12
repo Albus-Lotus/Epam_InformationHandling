@@ -5,7 +5,7 @@ import edu.kravchenko.infohandling.exception.TextException;
 import java.util.EnumSet;
 import java.util.List;
 
-public class TextSymbol implements Component {
+public class TextSymbol implements InfoComponent {
     private ComponentType type;
     private char symbol;
 
@@ -19,17 +19,17 @@ public class TextSymbol implements Component {
     }
 
     @Override
-    public void add(Component component) {
+    public void add(InfoComponent infoComponent) {
         throw new UnsupportedOperationException("Unsupported operation add on symbol");
     }
 
     @Override
-    public void remove(Component component) {
+    public void remove(InfoComponent infoComponent) {
         throw new UnsupportedOperationException("Unsupported operation remove on symbol");
     }
 
     @Override
-    public List<Component> getChildren() {
+    public List<InfoComponent> getChildren() {
         throw new UnsupportedOperationException("Unsupported operation get children on symbol");
     }
 
