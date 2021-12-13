@@ -9,13 +9,18 @@ import edu.kravchenko.infohandling.parser.impl.TextParser;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static edu.kravchenko.infohandling.entity.ComponentType.*;
 
 public class ParserTest {
     private static InfoComponent textComponent;
-    private final String TEXT = "\tcat, dog. dog.\n\tcat, dog.\n\tcat, cat, dog.";
 
     @BeforeAll
     public static void setUp() throws TextException {
@@ -56,9 +61,13 @@ public class ParserTest {
     }
 
     @Test
-    public void parseText() throws TextException {
+    public void parseText() throws TextException, IOException {
+        File file = new File(getClass().getClassLoader().getResource("files/text.txt").getFile());
+        String filePath = file.getAbsolutePath();
+        Path path = Paths.get(filePath);
+        String text = Files.readString(path);
         InfoComponent expected = textComponent;
-        InfoComponent actual = TextParser.getInstance().parse(TEXT);
+        InfoComponent actual = TextParser.getInstance().parse(text);
         assertEquals(expected, actual);
     }
 }
