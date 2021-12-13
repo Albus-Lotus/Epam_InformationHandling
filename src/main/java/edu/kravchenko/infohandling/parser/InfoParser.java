@@ -5,4 +5,4 @@ import edu.kravchenko.infohandling.exception.TextException;
 
 public interface InfoParser {
     InfoComponent parse(String text) throws TextException;
-    }
+}

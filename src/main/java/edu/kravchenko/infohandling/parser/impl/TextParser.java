@@ -24,9 +24,6 @@ public class TextParser implements InfoParser {
 
     @Override
     public InfoComponent parse(String text) throws TextException {
-        if (nextParser == null) {
-            throw new TextException("Paragraph parser is not specified");
-        }
         String[] paragraphs = text.strip().split(TEXT_SPLIT_REGEXP);
         var component = new TextComposite(ComponentType.TEXT);
         InfoComponent paragraphComponent;

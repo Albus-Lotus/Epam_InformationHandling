@@ -24,9 +24,6 @@ public class SentenceParser implements InfoParser {
 
     @Override
     public InfoComponent parse(String text) throws TextException {
-        if (nextParser == null) {
-            throw new TextException("Lexeme parser is not specified");
-        }
         String[] lexemes = text.strip().split(SENTENCE_SPLIT_REGEXP);
         var component = new TextComposite(ComponentType.SENTENCE);
         InfoComponent lexemeComponent;

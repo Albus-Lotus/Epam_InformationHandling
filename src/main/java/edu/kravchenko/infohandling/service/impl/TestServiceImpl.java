@@ -6,15 +6,14 @@ import edu.kravchenko.infohandling.service.TextService;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static edu.kravchenko.infohandling.entity.ComponentType.*;
 
 public class TestServiceImpl implements TextService {
-    private final String VOWEL_REGEXP = "[EUIOAeuioa]";
-    private final String CONSONANT_REGEXP = "[a-zA-Z&&[^EUIOAeuioa]";
+    private final String VOWEL_REGEXP = "[a-zA-Z&&[^EUIOAYeuioay]]";
+    private final String CONSONANT_REGEXP = "[EUIOAYeuioay]";
 
     @Override
     public void sortParagraphsBySentencesCount(InfoComponent component) throws TextException {
@@ -62,21 +61,17 @@ public class TestServiceImpl implements TextService {
     }
 
     @Override
-    public Map<InfoComponent, Long> countEqualWords(InfoComponent component) throws TextException {
+    public int countEqualWords(InfoComponent component, String word) throws TextException {
         if (component.getType() != TEXT) {
             throw new TextException("Incorrect component type (expected TEXT): " + component.getType());
         }
-        return component.getChildren().stream()
-                .flatMap(p1 -> p1.getChildren().stream())
-                .flatMap(s1 -> s1.getChildren().stream())
-                .flatMap(l1 -> l1.getChildren().stream())
-                .filter(o1 -> o1.getType() == WORD)
-                .collect(Collectors.toMap(w1 -> w1, w1 -> component.getChildren().stream()
-                                .flatMap(s2 -> s2.getChildren().stream())
-                                .flatMap(l2 -> l2.getChildren().stream())
-                                .filter(o2 -> o2.getType() == WORD)
-                                .filter(w2 -> w1.toString().equalsIgnoreCase(w2.toString()))
-                                .count()));
+        return (int) component.getChildren().stream()
+                .flatMap(p -> p.getChildren().stream())
+                .flatMap(s -> s.getChildren().stream())
+                .flatMap(l -> l.getChildren().stream())
+                .filter(o -> o.getType() == WORD)
+                .filter(w -> w.toString().equals(word))
+                .count();
     }
 
     @Override
