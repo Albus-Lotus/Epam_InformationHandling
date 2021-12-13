@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static edu.kravchenko.infohandling.entity.ComponentType.*;
 
 public class ParserTest {
-    private static InfoComponent text;
-    private final String TEXT = "\tcat, dog. dog. \n\t cat, dog.\n\t cat, cat, dog.";
+    private static InfoComponent textComponent;
+    private final String TEXT = "\tcat, dog. dog.\n\tcat, dog.\n\tcat, cat, dog.";
 
     @BeforeAll
     public static void setUp() throws TextException {
-        text = new TextComposite(ComponentType.TEXT);
+        textComponent = new TextComposite(ComponentType.TEXT);
         InfoComponent paragraph1 = new TextComposite(PARAGRAPH);
         InfoComponent paragraph2 = new TextComposite(PARAGRAPH);
         InfoComponent paragraph3 = new TextComposite(PARAGRAPH);
@@ -50,14 +50,14 @@ public class ParserTest {
         paragraph1.add(sentence1);
         paragraph2.add(sentence2);
         paragraph3.add(sentence3);
-        text.add(paragraph1);
-        text.add(sentence2);
-        text.add(sentence3);
+        textComponent.add(paragraph1);
+        textComponent.add(paragraph2);
+        textComponent.add(paragraph3);
     }
 
     @Test
     public void parseText() throws TextException {
-        InfoComponent expected = text;
+        InfoComponent expected = textComponent;
         InfoComponent actual = TextParser.getInstance().parse(TEXT);
         assertEquals(expected, actual);
     }

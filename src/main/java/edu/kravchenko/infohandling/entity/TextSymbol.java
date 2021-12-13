@@ -43,7 +43,7 @@ public class TextSymbol implements InfoComponent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TextSymbol that = (TextSymbol) o;
-        return symbol == that.symbol && getType() == that.type;
+        return symbol == that.symbol && type == that.type;
     }
 
     @Override
