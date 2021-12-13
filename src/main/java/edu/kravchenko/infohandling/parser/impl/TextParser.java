@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 public class TextParser implements InfoParser {
     private static final Logger logger = LogManager.getLogger();
     private static final TextParser INSTANCE = new TextParser();
-    private final String TEXT_SPLIT_REGEXP = "\\n+\\s*";
+    private final String TEXT_SPLIT_REGEXP = "\\s*\\n+\\s*";
     private InfoParser nextParser = ParagraphParser.getInstance();
 
     private TextParser() {

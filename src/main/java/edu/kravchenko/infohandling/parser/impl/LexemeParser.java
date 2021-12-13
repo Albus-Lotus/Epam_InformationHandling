@@ -13,9 +13,9 @@ import org.apache.logging.log4j.Logger;
 public class LexemeParser implements InfoParser {
     private static final Logger logger = LogManager.getLogger();
     private static final LexemeParser INSTANCE = new LexemeParser();
-    private static String LEXEME_SPLIT_REGEXP = "(?<=[-:,)(.\\[\\]}{])";
-    private final String WORD_SPLIT_REGEXP = "[-:,)(.\\[\\]}{]";
-    private final String PUNCTUATION_SPLIT_REGEXP = "\\w+";
+    private static String LEXEME_SPLIT_REGEXP = "(?=[-:,)(.}{])";
+    private final String WORD_REGEXP = "\\w+";
+    private final String PUNCTUATION_REGEXP = "[-:,)(.}{]";
     private InfoParser nextParser = WordParser.getInstance();
 
     private LexemeParser() {
@@ -34,7 +34,7 @@ public class LexemeParser implements InfoParser {
         var component = new TextComposite(ComponentType.LEXEME);
         InfoComponent lexemeComponent;
         for (String lexeme : lexemes) {
-            if (lexeme.matches(WORD_SPLIT_REGEXP)) {
+            if (lexeme.matches(WORD_REGEXP)) {
                 lexemeComponent = nextParser.parse(lexeme);
             } else {
                 lexemeComponent = new TextSymbol(ComponentType.PUNCTUATION, lexeme.charAt(0));
