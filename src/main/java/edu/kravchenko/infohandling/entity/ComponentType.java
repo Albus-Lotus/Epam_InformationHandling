@@ -1,9 +1,9 @@
 package edu.kravchenko.infohandling.entity;
 
 public enum ComponentType {
-    TEXT(""),
-    PARAGRAPH(""),
-    SENTENCE(""),
+    TEXT("\n\t"),
+    PARAGRAPH(" "),
+    SENTENCE(" "),
     LEXEME(""),
     WORD(""),
     SYMBOL(""),

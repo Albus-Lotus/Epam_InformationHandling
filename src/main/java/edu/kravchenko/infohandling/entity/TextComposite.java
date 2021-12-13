@@ -57,6 +57,9 @@ public class TextComposite implements InfoComponent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        if (type == ComponentType.TEXT) {
+            sb.append("\t");
+        }
         String delimiter = type.getDelimiter();
         for (InfoComponent infoComponent : infoComponents) {
             sb.append(infoComponent.toString()).append(delimiter);
